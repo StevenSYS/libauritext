@@ -9,4 +9,6 @@ build*/
 *.dylib
 *.so
 
+*.zip
+
 .DS_Store
