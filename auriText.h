@@ -31,7 +31,7 @@ typedef struct {
 	unsigned char size[2];
 } font_t;
 
-void auriText_getInfo();
+char *auriText_version();
 
 bool auriText_loadFont(
 	SDL_Renderer *renderer,

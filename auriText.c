@@ -21,12 +21,10 @@
 
 #include "auriText.h"
 
-#define LIBRARY_NAME "AuriText"
-#define LIBRARY_VERSION "1.0"
+#define LIBRARY_VERSION "1.1"
 
-void auriText_getInfo() {
-	printf(LIBRARY_NAME" v"LIBRARY_VERSION"\n");
-	return;
+char *auriText_version() {
+	return LIBRARY_VERSION;
 }
 
 bool auriText_loadFont(
