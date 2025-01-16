@@ -19,6 +19,7 @@
 #define __LIBAURITEXT__
 
 #include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
 
 enum auriText_align {
 	LEFT,
