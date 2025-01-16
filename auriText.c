@@ -22,7 +22,7 @@
 #include "auriText.h"
 
 #define LIBRARY_NAME "AuriText"
-#define LIBRARY_VERSION "0.9"
+#define LIBRARY_VERSION "1.0"
 
 void auriText_getInfo() {
 	printf(LIBRARY_NAME" v"LIBRARY_VERSION"\n");
@@ -47,7 +47,7 @@ bool auriText_loadFont(
 		strcat(errorMessage, "\" doesn't exist");
 		
 		printf("ERROR: %s\n", errorMessage);
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: Image Missing", errorMessage, NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: Font Sheet Missing", errorMessage, NULL);
 		return true;
 	}
 	
