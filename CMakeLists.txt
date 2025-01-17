@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 set(LIBRARY_NAME "AuriText")
 
-project(AuriText LANGUAGES C VERSION 0.9)
+project(AuriText LANGUAGES C)
 
 if(NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE Release)
