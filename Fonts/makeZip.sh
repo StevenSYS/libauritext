@@ -18,5 +18,4 @@ for i in */; do
 done
 
 7za a -mx9 $outputZip $outputDir/
-
 rm -rf $outputDir/
