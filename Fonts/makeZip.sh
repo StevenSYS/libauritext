@@ -1,35 +1,39 @@
 #!/bin/bash
 # $1 = Output Zip File (Optional)
-# $2 = Output Directory (Optional)
+# $2 = Output Temp Directory (Optional)
 # $3 = Info Text File (Optional)
-if [ -e "$1" ]; then
+
+if [ -n "$1" ]; then
 	outputZip="$1"
 else
 	outputZip="Fonts.zip"
 fi
 
-if [ -e "$2" ]; then
-	outputDir="$2"
+if [ -n "$2" ]; then
+	tempDir="$2"
 else
-	outputDir="Fonts"
+	tempDir="Fonts"
 fi
 
-if [ -e "$outputDir/" ]; then
-	rm -rf "$outputDir/"
+if [ -e "$tempDir/" ]; then
+	rm -rf "$tempDir/"
 fi
-mkdir "$outputDir"
+
+mkdir "$tempDir"
 
 if [ -e "$outputZip" ]; then
 	rm "$outputZip"
 fi
 
-if [ -e "$3" ]; then
-	cp "$3" "$outputDir/Info.txt"
+if [ -n "$3" ] && [ -e "$3" ]; then
+	cp "$3" "$tempDir/Info.txt"
 fi
 
 for i in */; do
-	./makeFontSheet.sh "$i" "$outputDir/${i%/}.png"
+	./makeFontSheet.sh "$i" "$tempDir/${i%/}.png"
 done
 
-7za a -mx9 "$outputZip" "$outputDir/"
-rm -rf "$outputDir/"
+7za a -mx9 "$outputZip" "$tempDir/"
+if [ -e "$tempDir" ]; then
+	rm -rf "$tempDir/"
+fi
