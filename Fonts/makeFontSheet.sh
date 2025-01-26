@@ -4,6 +4,7 @@
 
 # Use "./makeFontSheet.sh OutFont OutFont.png" to make the OutFont
 # Use "./makeFontSheet.sh InFont InFont.png" to make the InFont
+# Use "./makeFontSheet.sh Suoirua Suoirua.png" to make the Suoirua
 
 if [ -z $1 ]; then
 	echo "Missing input font directory"
