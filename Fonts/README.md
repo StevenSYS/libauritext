@@ -1,1 +1,1 @@
-"OutFont" and "InFont" are both public-domain fonts I made, feel free to do whatever you want with them.
+The fonts here are all public-domain, feel free to do whatever you want with them.
