@@ -23,12 +23,8 @@
 
 #define LIBRARY_VERSION "1.1"
 
-#define SHOW_ERRORS
-
-#ifdef SHOW_ERRORS
-		#define SHOW_SDLERRORS
-		#define SHOW_CLIERRORS
-#endif
+#define ERROR_MESSAGE 1
+#define ERROR_SDLMESSAGE 1
 
 char *auriText_version() {
 	return LIBRARY_VERSION;
@@ -45,18 +41,17 @@ bool auriText_loadFont(
 	const char *fontSheet
 ) {
 	if (fopen(fontSheet, "r") == NULL) {
-		#ifdef SHOW_ERRORS
+		#if ERROR_MESSAGE || ERROR_SDLMESSAGE
 		char errorMessage[255] = { 0 };
 		
 		strcat(errorMessage, "\"");
 		strcat(errorMessage, fontSheet);
 		strcat(errorMessage, "\" doesn't exist");
-		
-		#ifdef SHOW_CLIERRORS
-		printf("ERROR: %s\n", errorMessage);
+		#if ERROR_MESSAGE
+		fprintf(stderr, "ERROR: %s\n", errorMessage);
 		#endif
-		#ifdef SHOW_SDLERRORS
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: Font Sheet Missing", errorMessage, NULL);
+		#if ERROR_SDLMESSAGE
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Font Sheet Missing", errorMessage, NULL);
 		#endif
 		#endif
 		return true;

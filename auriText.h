@@ -15,8 +15,8 @@
 	If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef __LIBAURITEXT__
-#define __LIBAURITEXT__
+#ifndef __AURITEXT__
+#define __AURITEXT__
 
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
