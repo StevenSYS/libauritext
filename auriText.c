@@ -23,6 +23,13 @@
 
 #define LIBRARY_VERSION "1.1"
 
+#define SHOW_ERRORS
+
+#ifdef SHOW_ERRORS
+		#define SHOW_SDLERRORS
+		#define SHOW_CLIERRORS
+#endif
+
 char *auriText_version() {
 	return LIBRARY_VERSION;
 }
@@ -38,14 +45,20 @@ bool auriText_loadFont(
 	const char *fontSheet
 ) {
 	if (fopen(fontSheet, "r") == NULL) {
+		#ifdef SHOW_ERRORS
 		char errorMessage[255] = { 0 };
 		
 		strcat(errorMessage, "\"");
 		strcat(errorMessage, fontSheet);
 		strcat(errorMessage, "\" doesn't exist");
 		
+		#ifdef SHOW_CLIERRORS
 		printf("ERROR: %s\n", errorMessage);
+		#endif
+		#ifdef SHOW_SDLERRORS
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: Font Sheet Missing", errorMessage, NULL);
+		#endif
+		#endif
 		return true;
 	}
 	
@@ -68,7 +81,6 @@ void auriText_render(
 	
 	const unsigned char red, const unsigned char green, const unsigned char blue
 ) {
-	char offset[2] = { 0, 0 };
 	unsigned char letter = 0;
 	
 	if (strlen(text) > 0 && strlen(text) < 65535) {
@@ -78,7 +90,7 @@ void auriText_render(
 		for (unsigned short i = 0; i < strlen(text); i++) {
 			switch (text[i]) {
 				case 32: /* Space */
-					offset[0]++;
+					x += font->size[0];
 					break;
 				default:
 					if (text[i] < 33 || text[i] > 126) {
@@ -87,10 +99,10 @@ void auriText_render(
 						letter = text[i] - 32;
 					}
 					SDL_FRect letterCrop = { letter * font->size[0], 0, font->size[0], font->size[1] };
-					SDL_FRect letterRect = { x + offset[0] * font->size[0], y + offset[1] * font->size[1], font->size[0], font->size[1] };
+					SDL_FRect letterRect = { x, y * font->size[1], font->size[0], font->size[1] };
 					SDL_SetTextureColorMod(font->fontSheet, red, green, blue);
 					SDL_RenderTexture(renderer, font->fontSheet, &letterCrop, &letterRect);
-					offset[0]++;
+					x += font->size[0];
 					break;
 			}
 		}
