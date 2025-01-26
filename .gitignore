@@ -1,4 +1,5 @@
 build*/
+Fonts/Info.txt
 
 # Static Libraries
 *.lib
