@@ -5,7 +5,7 @@
 if [ -e "$1" ]; then
 	outputZip="$1"
 else
-	outputZip="Fonts.zip
+	outputZip="Fonts.zip"
 fi
 
 if [ -e "$2" ]; then
