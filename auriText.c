@@ -71,7 +71,7 @@ void auriText_render(
 	char offset[2] = { 0, 0 };
 	unsigned char letter = 0;
 	
-	if (strlen(text) > 0 && strlen(text) < 255) {
+	if (strlen(text) > 0 && strlen(text) < 65535) {
 		if (align == RIGHT) {
 			x -= strlen(text) * font->size[0];
 		}
