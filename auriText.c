@@ -78,7 +78,7 @@ void auriText_render(
 ) {
 	unsigned char letter = 0;
 	
-	if (strlen(text) > 0 && strlen(text) < 65535) {
+	if (strlen(text) > 0 && strlen(text) < 255) {
 		if (align == RIGHT) {
 			x -= strlen(text) * font->size[0];
 		}
@@ -94,7 +94,7 @@ void auriText_render(
 						letter = text[i] - 32;
 					}
 					SDL_FRect letterCrop = { letter * font->size[0], 0, font->size[0], font->size[1] };
-					SDL_FRect letterRect = { x, y * font->size[1], font->size[0], font->size[1] };
+					SDL_FRect letterRect = { x, y, font->size[0], font->size[1] };
 					SDL_SetTextureColorMod(font->fontSheet, red, green, blue);
 					SDL_RenderTexture(renderer, font->fontSheet, &letterCrop, &letterRect);
 					x += font->size[0];
