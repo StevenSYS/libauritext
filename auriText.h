@@ -27,10 +27,10 @@ enum auriText_align {
 };
 
 enum auriText_errors {
-	NO_ERROR,
-	FONT_MISSING,
-	STRING_EMPTY,
-	STRING_TOO_LONG
+	AURITEXT_NOERROR,
+	AURITEXT_FONT_MISSING,
+	AURITEXT_STRING_EMPTY,
+	AURITEXT_STRING_TOOLONG
 };
 
 typedef struct {

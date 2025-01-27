@@ -56,7 +56,7 @@ enum auriText_errors auriText_loadFont(
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Font Sheet Missing", errorMessage, NULL);
 		#endif
 		#endif
-		return FONT_MISSING;
+		return AURITEXT_FONT_MISSING;
 	}
 	
 	font->size[0] = width;
@@ -64,7 +64,7 @@ enum auriText_errors auriText_loadFont(
 	
 	font->fontSheet = IMG_LoadTexture(renderer, fontSheet);
 	SDL_SetTextureScaleMode(font->fontSheet, SDL_SCALEMODE_NEAREST);
-	return NO_ERROR;
+	return AURITEXT_NOERROR;
 }
 
 enum auriText_errors auriText_render(
@@ -105,9 +105,9 @@ enum auriText_errors auriText_render(
 			}
 		}
 	} else if (strlen(text) <= 0) {
-		return STRING_EMPTY;
+		return AURITEXT_STRING_EMPTY;
 	} else if (strlen(text) > MAX_TEXTLENGTH) {
-		return STRING_TOO_LONG;
+		return AURITEXT_STRING_TOOLONG;
 	}
-	return NO_ERROR;
+	return AURITEXT_NOERROR;
 }
