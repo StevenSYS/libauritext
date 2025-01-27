@@ -26,6 +26,13 @@ enum auriText_align {
 	RIGHT
 };
 
+enum auriText_errors {
+	NO_ERROR,
+	FONT_MISSING,
+	STRING_EMPTY,
+	STRING_TOO_LONG
+};
+
 typedef struct {
 	SDL_Texture *fontSheet;
 	unsigned char size[2];
@@ -33,7 +40,7 @@ typedef struct {
 
 char *auriText_version();
 
-bool auriText_loadFont(
+enum auriText_errors auriText_loadFont(
 	SDL_Renderer *renderer,
 	
 	font_t *font,
@@ -44,7 +51,7 @@ bool auriText_loadFont(
 	const char *fontSheet
 );
 
-void auriText_render(
+enum auriText_errors auriText_render(
 	SDL_Renderer *renderer,
 	
 	const font_t *font,
@@ -52,6 +59,7 @@ void auriText_render(
 	const char *text,
 	
 	short x, short y,
+	char scaleX, char scaleY,
 	
 	const unsigned char red, const unsigned char green, const unsigned char blue
 );

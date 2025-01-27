@@ -21,16 +21,18 @@
 
 #include "auriText.h"
 
-#define LIBRARY_VERSION "1.1"
+#define LIBRARY_VERSION "1.2"
 
 #define ERROR_MESSAGE 1
 #define ERROR_SDLMESSAGE 1
+
+#define MAX_TEXTLENGTH 65535
 
 char *auriText_version() {
 	return LIBRARY_VERSION;
 }
 
-bool auriText_loadFont(
+enum auriText_errors auriText_loadFont(
 	SDL_Renderer *renderer,
 	
 	font_t *font,
@@ -54,7 +56,7 @@ bool auriText_loadFont(
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Font Sheet Missing", errorMessage, NULL);
 		#endif
 		#endif
-		return true;
+		return FONT_MISSING;
 	}
 	
 	font->size[0] = width;
@@ -62,10 +64,10 @@ bool auriText_loadFont(
 	
 	font->fontSheet = IMG_LoadTexture(renderer, fontSheet);
 	SDL_SetTextureScaleMode(font->fontSheet, SDL_SCALEMODE_NEAREST);
-	return false;
+	return NO_ERROR;
 }
 
-void auriText_render(
+enum auriText_errors auriText_render(
 	SDL_Renderer *renderer,
 	
 	const font_t *font,
@@ -73,12 +75,13 @@ void auriText_render(
 	const char *text,
 	
 	short x, short y,
+	char scaleX, char scaleY,
 	
 	const unsigned char red, const unsigned char green, const unsigned char blue
 ) {
 	unsigned char letter = 0;
 	
-	if (strlen(text) > 0 && strlen(text) < 65535) {
+	if (strlen(text) > 0 && strlen(text) < MAX_TEXTLENGTH) {
 		if (align == RIGHT) {
 			x -= strlen(text) * font->size[0];
 		}
@@ -93,13 +96,18 @@ void auriText_render(
 					} else {
 						letter = text[i] - 32;
 					}
-					SDL_FRect letterCrop = { letter * font->size[0], 0, font->size[0], font->size[1] };
-					SDL_FRect letterRect = { x, y, font->size[0], font->size[1] };
+					SDL_FRect letterCrop = { (letter * font->size[0]), 0, font->size[0], font->size[1] };
+					SDL_FRect letterRect = { x, y, font->size[0] * scaleX, font->size[1] * scaleY };
 					SDL_SetTextureColorMod(font->fontSheet, red, green, blue);
 					SDL_RenderTexture(renderer, font->fontSheet, &letterCrop, &letterRect);
-					x += font->size[0];
+					x += font->size[0] * scaleX;
 					break;
 			}
 		}
+	} else if (strlen(text) <= 0) {
+		return STRING_EMPTY;
+	} else if (strlen(text) > MAX_TEXTLENGTH) {
+		return STRING_TOO_LONG;
 	}
+	return NO_ERROR;
 }
