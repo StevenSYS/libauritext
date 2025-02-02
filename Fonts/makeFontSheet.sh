@@ -16,4 +16,4 @@ if [ -z $2 ]; then
 	exit
 fi
 
-magick "$1/Specials/1/*.png" "$1/Numbers/*.png" "$1/Specials/2/*.png" "$1/Letters/Upper/*.png" "$1/Specials/3/*.png" "$1/Letters/Lower/*.png" "$1/Specials/4/*.png" +append "$2"
+magick "$1/Specials/1/*.png" "$1/Numbers/*.png" "$1/Specials/2/*.png" "$1/Letters/Upper/*.png" "$1/Specials/3/*.png" "$1/Letters/Lower/*.png" "$1/Specials/4/*.png" -define png:include-chunk=none +append "$2"

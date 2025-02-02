@@ -30,7 +30,9 @@ if [ -n "$3" ] && [ -e "$3" ]; then
 fi
 
 for i in */; do
-	./makeFontSheet.sh "$i" "$tempDir/${i%/}.png"
+	if [[ "${i%/}" != "$tempDir" ]]; then
+		./makeFontSheet.sh "${i%/}" "$tempDir/${i%/}.png"
+	fi
 done
 
 7za a -mx9 "$outputZip" "$tempDir/"
