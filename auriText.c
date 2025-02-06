@@ -16,6 +16,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 
 #include "auriText.h"
 
@@ -61,7 +62,7 @@ enum auriText_errors auriText_loadFont(
 	font->size[1] = height;
 	
 	font->fontSheet = IMG_LoadTexture(renderer, fontSheet);
-	SDL_SetTextureScaleMode(font->fontSheet, SDL_SCALEMODE_NEAREST);
+	SDL_SetTextureScaleMode(font->fontSheet, SDL_ScaleModeNearest);
 	return AURITEXT_NOERROR;
 }
 
@@ -94,10 +95,10 @@ enum auriText_errors auriText_render(
 					} else {
 						letter = text[i] - 32;
 					}
-					SDL_FRect letterCrop = { (letter * font->size[0]), 0, font->size[0], font->size[1] };
-					SDL_FRect letterRect = { x, y, font->size[0] * scaleX, font->size[1] * scaleY };
+					SDL_Rect letterCrop = { (letter * font->size[0]), 0, font->size[0], font->size[1] };
+					SDL_Rect letterRect = { x, y, font->size[0] * scaleX, font->size[1] * scaleY };
 					SDL_SetTextureColorMod(font->fontSheet, red, green, blue);
-					SDL_RenderTexture(renderer, font->fontSheet, &letterCrop, &letterRect);
+					SDL_RenderCopy(renderer, font->fontSheet, &letterCrop, &letterRect);
 					x += font->size[0] * scaleX;
 					break;
 			}
