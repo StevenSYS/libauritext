@@ -19,7 +19,7 @@
 
 #include "auriText.h"
 
-#define LIBRARY_VERSION "1.2.1"
+#define LIBRARY_VERSION "1.2.2"
 
 #define ERROR_MESSAGE 1
 #define ERROR_SDLMESSAGE 1
