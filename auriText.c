@@ -73,7 +73,7 @@ enum auriText_errors auriText_render(
 	const char *text,
 	
 	short x, short y,
-	char scaleX, char scaleY,
+	float scaleX, float scaleY,
 	
 	const unsigned char red, const unsigned char green, const unsigned char blue
 ) {
