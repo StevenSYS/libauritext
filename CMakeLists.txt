@@ -7,8 +7,8 @@ if(NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE Release)
 endif()
 
-set(CMAKE_C_FLAGS_DEBUG "-g")
-set(CMAKE_C_FLAGS_RELEASE "-s -O3")
+set(CMAKE_C_FLAGS_DEBUG "-g -Wall")
+set(CMAKE_C_FLAGS_RELEASE "-s -O2")
 
 file(GLOB SOURCE_FILES "*.c")
 
