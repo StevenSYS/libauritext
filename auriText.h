@@ -18,6 +18,10 @@
 #ifndef __AURITEXT__
 #define __AURITEXT__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 
@@ -63,5 +67,9 @@ enum auriText_errors auriText_render(
 	
 	const unsigned char red, const unsigned char green, const unsigned char blue
 );
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
