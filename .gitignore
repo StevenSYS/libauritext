@@ -1,6 +1,7 @@
 build*/
 Fonts/Info.txt
 Fonts/autoMakeZip.sh
+SDL2/
 
 # Static Libraries
 *.lib
