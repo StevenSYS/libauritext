@@ -22,8 +22,8 @@
 extern "C" {
 #endif
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+struct SDL_Renderer;
+struct SDL_Texture;
 
 enum auriText_align {
 	LEFT,
