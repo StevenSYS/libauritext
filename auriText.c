@@ -23,9 +23,6 @@
 
 #define LIBRARY_VERSION "1.2.2"
 
-#define ERROR_MESSAGE 1
-#define ERROR_SDLMESSAGE 1
-
 #define MAX_TEXTLENGTH 65535
 
 char *auriText_version() {
@@ -43,16 +40,16 @@ enum auriText_errors auriText_loadFont(
 	const char *fontSheet
 ) {
 	if (fopen(fontSheet, "r") == NULL) {
-		#if ERROR_MESSAGE || ERROR_SDLMESSAGE
+		#if defined(ERROR_MESSAGES) || defined(ERROR_SDLMESSAGES)
 		char errorMessage[255] = { 0 };
 		
 		strcat(errorMessage, "\"");
 		strcat(errorMessage, fontSheet);
 		strcat(errorMessage, "\" doesn't exist");
-		#if ERROR_MESSAGE
+		#ifdef ERROR_MESSAGES
 		fprintf(stderr, "ERROR: %s\n", errorMessage);
 		#endif
-		#if ERROR_SDLMESSAGE
+		#ifdef ERROR_SDLMESSAGES
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Font Sheet Missing", errorMessage, NULL);
 		#endif
 		#endif
