@@ -88,7 +88,7 @@ enum auriText_errors auriText_render(
 		for (unsigned short i = 0; i < strlen(text); i++) {
 			switch (text[i]) {
 				case 32: /* Space */
-					x += font->size[0];
+					x += font->size[0] * scaleX;
 					break;
 				default:
 					if (text[i] < 33 || text[i] > 126) {
