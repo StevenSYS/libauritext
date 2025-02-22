@@ -22,7 +22,7 @@
 
 #include "auriText.h"
 
-#define LIBRARY_VERSION "1.2.3"
+#define LIBRARY_VERSION "1.2.3.1"
 
 #define ERROR_MESSAGE
 #define ERROR_SDLMESSAGE
@@ -84,7 +84,7 @@ enum auriText_errors auriText_render(
 	
 	if (strlen(text) > 0 && strlen(text) < MAX_TEXTLENGTH) {
 		if (align == RIGHT) {
-			x -= strlen(text) * font->size[0];
+			x -= strlen(text) * (font->size[0] * scaleX);
 		}
 		for (unsigned short i = 0; i < strlen(text); i++) {
 			switch (text[i]) {
