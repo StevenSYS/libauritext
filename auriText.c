@@ -22,7 +22,7 @@
 
 #include "auriText.h"
 
-#define LIBRARY_VERSION "1.2.2"
+#define LIBRARY_VERSION "1.2.3"
 
 #define ERROR_MESSAGE
 #define ERROR_SDLMESSAGE
