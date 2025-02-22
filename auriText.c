@@ -25,6 +25,9 @@
 
 #define MAX_TEXTLENGTH 65535
 
+#define ERROR_MESSAGES
+#define ERROR_SDLMESSAGES
+
 char *auriText_version() {
 	return LIBRARY_VERSION;
 }

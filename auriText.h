@@ -22,9 +22,6 @@
 extern "C" {
 #endif
 
-#define ERROR_MESSSAGES
-#define ERROR_SDL_MESSAGES
-
 typedef struct SDL_Renderer SDL_Renderer;
 typedef struct SDL_Texture SDL_Texture;
 struct SDL_Renderer;
