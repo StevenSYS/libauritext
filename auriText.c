@@ -21,7 +21,7 @@
 
 #include "auriText.h"
 
-#define LIBRARY_VERSION "1.2.2"
+#define LIBRARY_VERSION "1.2.3"
 
 #define MAX_TEXTLENGTH 65535
 
