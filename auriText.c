@@ -83,8 +83,15 @@ enum auriText_errors auriText_render(
 	unsigned char letter = 0;
 	
 	if (strlen(text) > 0 && strlen(text) < MAX_TEXTLENGTH) {
-		if (align == RIGHT) {
-			x -= strlen(text) * (font->size[0] * scaleX);
+		switch (align) {
+			case LEFT:
+				break;
+			case CENTER:
+				x -= (strlen(text) * (font->size[0] * scaleX)) / 2;
+				break;
+			case RIGHT:
+				x -= strlen(text) * (font->size[0] * scaleX);
+				break;
 		}
 		for (unsigned short i = 0; i < strlen(text); i++) {
 			switch (text[i]) {

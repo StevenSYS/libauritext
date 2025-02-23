@@ -27,6 +27,7 @@ struct SDL_Texture;
 
 enum auriText_align {
 	LEFT,
+	CENTER,
 	RIGHT
 };
 
