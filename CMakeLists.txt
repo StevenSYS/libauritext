@@ -21,6 +21,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE src/)
 if (CMAKE_C_COMPILER_ID MATCHES "Clang")
 	target_link_libraries(${PROJECT_NAME}
 		${SDL2_LIBRARIES}
-		SDL2::SDL2_image
+		SDL2_image
 	)
 endif()
