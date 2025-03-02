@@ -3,10 +3,6 @@ set(LIBRARY_NAME "AuriText")
 
 project(AuriText LANGUAGES C)
 
-if(NOT CMAKE_BUILD_TYPE)
-	set(CMAKE_BUILD_TYPE Release)
-endif()
-
 set(CMAKE_C_FLAGS_DEBUG "-g -Wall")
 set(CMAKE_C_FLAGS_RELEASE "-s -O2")
 
@@ -22,3 +18,9 @@ else()
 	add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 endif()
 target_include_directories(${PROJECT_NAME} PRIVATE src/)
+if (CMAKE_C_COMPILER_ID MATCHES "Clang")
+	target_link_libraries(${PROJECT_NAME}
+		${SDL2_LIBRARIES}
+		SDL2::SDL2_image
+	)
+endif()
