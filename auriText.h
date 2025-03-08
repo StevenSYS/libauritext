@@ -68,7 +68,7 @@ enum auriText_errors auriText_render(
 	short x, short y,
 	float scaleX, float scaleY,
 	
-	const unsigned char red, const unsigned char green, const unsigned char blue
+	const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha
 );
 
 #ifdef __cplusplus

@@ -55,10 +55,10 @@ int main() {
 			CENTER,
 			"AuriText Example Program",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 128,
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 192,
 			2.0f, 2.0f,
 			
-			0xFF, 0xFF, 0xFF
+			0xFF, 0xFF, 0xFF, 0xFF
 		);
 		
 		auriText_render(
@@ -68,10 +68,10 @@ int main() {
 			CENTER,
 			"Red",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 64,
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 128,
 			5.0f, 5.0f,
 			
-			0xFF, 0x00, 0x00
+			0xFF, 0x00, 0x00, 0xFF
 		);
 
 		auriText_render(
@@ -81,10 +81,10 @@ int main() {
 			CENTER,
 			"Green",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2),
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 64,
 			5.0f, 5.0f,
 			
-			0x00, 0xFF, 0x00
+			0x00, 0xFF, 0x00, 0xFF
 		);
 		
 		auriText_render(
@@ -94,12 +94,37 @@ int main() {
 			CENTER,
 			"Blue",
 			
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2),
+			5.0f, 5.0f,
+			
+			0x00, 0x00, 0xFF, 0xFF
+		);
+		
+		auriText_render(
+			renderer,
+			
+			&comIO,
+			CENTER,
+			"Alpha - 128",
+			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 64,
 			5.0f, 5.0f,
 			
-			0x00, 0x00, 0xFF
+			0xFF, 0xFF, 0xFF, 0x80
 		);
 
+		auriText_render(
+			renderer,
+			
+			&comIO,
+			CENTER,
+			"Alpha - 64",
+			
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 128,
+			5.0f, 5.0f,
+			
+			0xFF, 0xFF, 0xFF, 0x40
+		);
 		
 		SDL_RenderPresent(renderer);
 	}

@@ -50,7 +50,7 @@ enum auriText_errors auriText_loadFont(
 		fprintf(stderr, "ERROR: %s\n", errorMessage);
 		#endif
 		#ifdef ERROR_SDLMESSAGES
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Font sheet texture is invalid", errorMessage, NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Invalid Font Sheet Texture", errorMessage, NULL);
 		#endif
 		#endif
 		return AURITEXT_FONT_INVALID;
@@ -74,7 +74,7 @@ enum auriText_errors auriText_render(
 	short x, short y,
 	float scaleX, float scaleY,
 	
-	const unsigned char red, const unsigned char green, const unsigned char blue
+	const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha
 ) {
 	unsigned char letter = 0;
 	
@@ -103,6 +103,7 @@ enum auriText_errors auriText_render(
 					SDL_FRect letterCrop = { (letter * font->size[0]), 0, font->size[0], font->size[1] };
 					SDL_FRect letterRect = { x, y, font->size[0] * scaleX, font->size[1] * scaleY };
 					SDL_SetTextureColorMod(font->fontSheet, red, green, blue);
+					SDL_SetTextureAlphaMod(font->fontSheet, alpha);
 					SDL_RenderTexture(renderer, font->fontSheet, &letterCrop, &letterRect);
 					x += font->size[0] * scaleX;
 					break;
