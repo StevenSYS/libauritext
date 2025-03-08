@@ -4,8 +4,6 @@ project(AuriText LANGUAGES C)
 set(CMAKE_C_FLAGS_DEBUG "-g -Wall")
 set(CMAKE_C_FLAGS_RELEASE "-s -O2")
 
-find_package(SDL3)
-
 file(GLOB SOURCE_FILES "*.c")
 
 find_package(SDL3 REQUIRED)
