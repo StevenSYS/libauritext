@@ -35,7 +35,7 @@ enum auriText_align {
 
 enum auriText_errors {
 	AURITEXT_NOERROR,
-	AURITEXT_FONT_MISSING,
+	AURITEXT_FONT_INVALID,
 	AURITEXT_STRING_EMPTY,
 	AURITEXT_STRING_TOOLONG
 };
@@ -55,7 +55,7 @@ enum auriText_errors auriText_loadFont(
 	const unsigned char width,
 	const unsigned char height,
 	
-	const char *fontSheet
+	SDL_Texture *fontSheet
 );
 
 enum auriText_errors auriText_render(

@@ -17,7 +17,6 @@
 
 #include <stdio.h>
 #include <SDL3/SDL.h>
-#include <SDL3_image/SDL_image.h>
 
 #include "auriText.h"
 
@@ -40,29 +39,27 @@ enum auriText_errors auriText_loadFont(
 	const unsigned char width,
 	const unsigned char height,
 	
-	const char *fontSheet
+	SDL_Texture *fontSheet
 ) {
-	if (fopen(fontSheet, "r") == NULL) {
+	if (!fontSheet) {
 		#if defined(ERROR_MESSAGES) || defined(ERROR_SDLMESSAGES)
 		char errorMessage[255] = { 0 };
 		
-		strcat(errorMessage, "\"");
-		strcat(errorMessage, fontSheet);
-		strcat(errorMessage, "\" doesn't exist");
+		strcat(errorMessage, "Font sheet texture is invalid");
 		#ifdef ERROR_MESSAGES
 		fprintf(stderr, "ERROR: %s\n", errorMessage);
 		#endif
 		#ifdef ERROR_SDLMESSAGES
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Font Sheet Missing", errorMessage, NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Font sheet texture is invalid", errorMessage, NULL);
 		#endif
 		#endif
-		return AURITEXT_FONT_MISSING;
+		return AURITEXT_FONT_INVALID;
 	}
 	
 	font->size[0] = width;
 	font->size[1] = height;
 	
-	font->fontSheet = IMG_LoadTexture(renderer, fontSheet);
+	font->fontSheet = fontSheet;
 	SDL_SetTextureScaleMode(font->fontSheet, SDL_SCALEMODE_NEAREST);
 	return AURITEXT_NOERROR;
 }
