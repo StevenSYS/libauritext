@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(AuriText LANGUAGES C)
+project(AuriText-SDL2 LANGUAGES C)
 
 set(CMAKE_C_FLAGS_DEBUG "-g -Wall")
 set(CMAKE_C_FLAGS_RELEASE "-s -O2")

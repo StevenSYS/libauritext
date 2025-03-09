@@ -60,9 +60,9 @@ jobs:
       
       - name: Make Directories
         run: >
-          mkdir -p "${{matrix.build-targets.output}}/include/AuriText"
+          mkdir -p "${{matrix.build-targets.output}}/include/AuriText-SDL2"
           "${{matrix.build-targets.output}}/${{matrix.build-targets.libPath}}"
-          "${{matrix.build-targets.output}}/share/licenses/AuriText"
+          "${{matrix.build-targets.output}}/share/licenses/AuriText-SDL2"
       
       - name: Make Directories (Windows)
         if: runner.os == 'Windows'
@@ -84,8 +84,8 @@ jobs:
      
       - name: Copy Files (Shared)
         run: |
-          cp *.h "${{matrix.build-targets.output}}/include/AuriText"
-          cp COPYING* "${{matrix.build-targets.output}}/share/licenses/AuriText"
+          cp *.h "${{matrix.build-targets.output}}/include/AuriText-SDL2"
+          cp COPYING* "${{matrix.build-targets.output}}/share/licenses/AuriText-SDL2"
       
       - name: Copy Files (Linux)
         if: runner.os == 'Linux'

@@ -1,5 +1,5 @@
 /*
-	This file is part of libAuriText.
+	This file is part of libAuriText-SDL2.
 
 	libAuriText is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
@@ -59,7 +59,7 @@ int main() {
 		return 1;
 	}
 	
-	strcpy(auriTextVersion, "libAuriText v");
+	strcpy(auriTextVersion, "libAuriText-SDL2 v");
 	strcat(auriTextVersion, auriText_version());
 	
 	while (running) {
