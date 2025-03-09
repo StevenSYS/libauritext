@@ -89,13 +89,13 @@ jobs:
       
       - name: Copy Files (Linux)
         if: runner.os == 'Linux'
-        run: cp ${{env.BUILD_PATH}}/libAuriText.* "${{matrix.build-targets.output}}/${{matrix.build-targets.libPath}}"
+        run: cp ${{env.BUILD_PATH}}/libAuriText-SDL2.* "${{matrix.build-targets.output}}/${{matrix.build-targets.libPath}}"
       
       - name: Copy Files (Windows)
         if: runner.os == 'Windows'
         run: |
-          cp ${{env.BUILD_PATH}}/libAuriText.dll.a "${{matrix.build-targets.output}}/${{matrix.build-targets.libPath}}"
-          cp ${{env.BUILD_PATH}}/libAuriText.dll "${{matrix.build-targets.output}}/bin"
+          cp ${{env.BUILD_PATH}}/libAuriText-SDL2.dll.a "${{matrix.build-targets.output}}/${{matrix.build-targets.libPath}}"
+          cp ${{env.BUILD_PATH}}/libAuriText-SDL2.dll "${{matrix.build-targets.output}}/bin"
       
       - name: Make Archive
         run: tar -czvf "${{matrix.build-targets.output}}.tar.gz" "${{matrix.build-targets.output}}"
