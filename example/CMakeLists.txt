@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 2.25)
 
 project(AuriTextExample LANGUAGES C VERSION 1.0)
 
@@ -18,7 +18,7 @@ add_library(AuriText STATIC ../auriText.c)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME}
-	SDL2
+	${SDL2_LIBRARIES}
 	SDL2_image
 	AuriText
 )
