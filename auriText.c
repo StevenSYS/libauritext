@@ -15,10 +15,8 @@
 	If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
 #include <string.h>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 
 #include "auriText.h"
 
@@ -41,29 +39,27 @@ enum auriText_errors auriText_loadFont(
 	const unsigned char width,
 	const unsigned char height,
 	
-	const char *fontSheet
+	SDL_Texture *fontSheet
 ) {
-	if (fopen(fontSheet, "r") == NULL) {
-		#if defined(ERROR_MESSAGE) || defined(ERROR_SDLMESSAGE)
+	if (!fontSheet) {
+		#if defined(ERROR_MESSAGES) || defined(ERROR_SDLMESSAGES)
 		char errorMessage[255] = { 0 };
 		
-		strcat(errorMessage, "\"");
-		strcat(errorMessage, fontSheet);
-		strcat(errorMessage, "\" doesn't exist");
-		#ifdef ERROR_MESSAGE
+		strcat(errorMessage, "Font sheet texture is invalid");
+		#ifdef ERROR_MESSAGES
 		fprintf(stderr, "ERROR: %s\n", errorMessage);
 		#endif
-		#ifdef ERROR_SDLMESSAGE
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Font Sheet Missing", errorMessage, NULL);
+		#ifdef ERROR_SDLMESSAGES
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Invalid Font Sheet Texture", errorMessage, NULL);
 		#endif
 		#endif
-		return AURITEXT_FONT_MISSING;
+		return AURITEXT_FONT_INVALID;
 	}
 	
 	font->size[0] = width;
 	font->size[1] = height;
 	
-	font->fontSheet = IMG_LoadTexture(renderer, fontSheet);
+	font->fontSheet = fontSheet;
 	SDL_SetTextureScaleMode(font->fontSheet, SDL_ScaleModeNearest);
 	return AURITEXT_NOERROR;
 }
@@ -78,7 +74,7 @@ enum auriText_errors auriText_render(
 	short x, short y,
 	float scaleX, float scaleY,
 	
-	const unsigned char red, const unsigned char green, const unsigned char blue
+	const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha
 ) {
 	unsigned char letter = 0;
 	
@@ -107,6 +103,7 @@ enum auriText_errors auriText_render(
 					SDL_Rect letterCrop = { (letter * font->size[0]), 0, font->size[0], font->size[1] };
 					SDL_Rect letterRect = { x, y, font->size[0] * scaleX, font->size[1] * scaleY };
 					SDL_SetTextureColorMod(font->fontSheet, red, green, blue);
+					SDL_SetTextureAlphaMod(font->fontSheet, alpha);
 					SDL_RenderCopy(renderer, font->fontSheet, &letterCrop, &letterRect);
 					x += font->size[0] * scaleX;
 					break;
