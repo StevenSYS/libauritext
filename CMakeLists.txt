@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.25)
+cmake_minimum_required(VERSION 3.25)
 project(AuriText LANGUAGES C)
 
 set(CMAKE_C_FLAGS_DEBUG "-g -Wall")
