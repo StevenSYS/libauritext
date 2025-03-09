@@ -47,7 +47,7 @@ jobs:
       - name: SDL2 - Install (Linux)
         if: runner.os == 'Linux'
         run: >
-          sudo apt libsdl2-dev
+          sudo apt install libsdl2-dev
       
       - name: SDL2 - Install (Windows)
         if: runner.os == 'Windows'
