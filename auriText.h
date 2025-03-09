@@ -1,5 +1,5 @@
 /*
-	This file is part of libAuriText.
+	This file is part of libAuriText-SDL2.
 
 	libAuriText is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
@@ -33,7 +33,7 @@ enum auriText_align {
 
 enum auriText_errors {
 	AURITEXT_NOERROR,
-	AURITEXT_FONT_MISSING,
+	AURITEXT_FONT_INVALID,
 	AURITEXT_STRING_EMPTY,
 	AURITEXT_STRING_TOOLONG
 };
@@ -53,7 +53,7 @@ enum auriText_errors auriText_loadFont(
 	const unsigned char width,
 	const unsigned char height,
 	
-	const char *fontSheet
+	SDL_Texture *fontSheet
 );
 
 enum auriText_errors auriText_render(
@@ -66,7 +66,7 @@ enum auriText_errors auriText_render(
 	short x, short y,
 	float scaleX, float scaleY,
 	
-	const unsigned char red, const unsigned char green, const unsigned char blue
+	const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha
 );
 
 #ifdef __cplusplus
