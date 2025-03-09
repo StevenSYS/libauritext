@@ -15,7 +15,7 @@
 	If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
+#include <string.h>
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 
@@ -28,6 +28,8 @@
 char running = 1;
 
 int main() {
+	char auriTextVersion[50];
+	
 	SDL_Event event;
 	SDL_Window *window = SDL_CreateWindow(
 		"AuriText Example Program",
@@ -55,6 +57,9 @@ int main() {
 		return 1;
 	}
 	
+	strcpy(auriTextVersion, "libAuriText v");
+	strcat(auriTextVersion, auriText_version());
+	
 	while (running) {
 		SDL_PollEvent(&event);
 		SDL_RenderClear(renderer);
@@ -70,7 +75,7 @@ int main() {
 			
 			&comIO,
 			CENTER,
-			"AuriText Example Program",
+			auriTextVersion,
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 192,
 			2.0f, 2.0f,
@@ -83,9 +88,22 @@ int main() {
 			
 			&comIO,
 			CENTER,
+			"AuriText Example Program",
+			
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 152,
+			2.0f, 2.0f,
+			
+			0xFF, 0xFF, 0xFF, 0xFF
+		);
+		
+		auriText_render(
+			renderer,
+			
+			&comIO,
+			CENTER,
 			"Red",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 128,
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 104,
 			5.0f, 5.0f,
 			
 			0xFF, 0x00, 0x00, 0xFF
@@ -98,7 +116,7 @@ int main() {
 			CENTER,
 			"Green",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 64,
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 40,
 			5.0f, 5.0f,
 			
 			0x00, 0xFF, 0x00, 0xFF
@@ -111,7 +129,7 @@ int main() {
 			CENTER,
 			"Blue",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2),
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 24,
 			5.0f, 5.0f,
 			
 			0x00, 0x00, 0xFF, 0xFF
@@ -124,7 +142,7 @@ int main() {
 			CENTER,
 			"Alpha - 128",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 64,
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 88,
 			5.0f, 5.0f,
 			
 			0xFF, 0xFF, 0xFF, 0x80
@@ -137,7 +155,7 @@ int main() {
 			CENTER,
 			"Alpha - 64",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 128,
+			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 152,
 			5.0f, 5.0f,
 			
 			0xFF, 0xFF, 0xFF, 0x40
