@@ -15,7 +15,12 @@
 	If not, see <https://www.gnu.org/licenses/>.
 */
 
+#define ERROR_MESSAGES_STDERR
+#define ERROR_MESSAGES_SDL
+
+#ifdef ERROR_MESSAGES_STDERR
 #include <stdio.h>
+#endif
 #include <SDL3/SDL.h>
 
 #include "auriText.h"
@@ -42,14 +47,13 @@ enum auriText_errors auriText_loadFont(
 	SDL_Texture *fontSheet
 ) {
 	if (!fontSheet) {
-		#if defined(ERROR_MESSAGES) || defined(ERROR_SDLMESSAGES)
-		char errorMessage[255] = { 0 };
+		#if defined(ERROR_MESSAGES_STDERR) || defined(ERROR_MESSAGES_SDL)
+		char *errorMessage = "Font sheet texture is invalid");
 		
-		strcat(errorMessage, "Font sheet texture is invalid");
-		#ifdef ERROR_MESSAGES
+		#ifdef ERROR_MESSAGES_STDERR
 		fprintf(stderr, "ERROR: %s\n", errorMessage);
 		#endif
-		#ifdef ERROR_SDLMESSAGES
+		#ifdef ERROR_MESSAGES_SDL
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Invalid Font Sheet Texture", errorMessage, NULL);
 		#endif
 		#endif
