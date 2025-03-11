@@ -47,7 +47,7 @@ enum auriText_errors auriText_loadFont(
 		#if defined(ERROR_MESSAGES_STDERR) || defined(ERROR_MESSAGES_SDL)
 		char *errorMessage = "Font sheet texture is invalid";
 		
-		#ifde	f ERROR_MESSAGES_STDERR
+		#ifdef ERROR_MESSAGES_STDERR
 		fprintf(stderr, "ERROR: %s\n", errorMessage);
 		#endif
 		#ifdef ERROR_MESSAGES_SDL
