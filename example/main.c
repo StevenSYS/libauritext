@@ -32,7 +32,7 @@ int main() {
 	
 	SDL_Event event;
 	SDL_Window *window = SDL_CreateWindow(
-		"AuriText Example Program",
+		"AuriText-SDL2 Example Program",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		RENDER_WIDTH, RENDER_HEIGHT,
 		0
@@ -90,7 +90,7 @@ int main() {
 			
 			&comIO,
 			CENTER,
-			"AuriText Example Program",
+			"AuriText-SDL2 Example Program",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 152,
 			2.0f, 2.0f,
