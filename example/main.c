@@ -52,7 +52,7 @@ int main() {
 		
 		8, 8,
 		
-		SDL_CreateTextureFromSurface(renderer, IMG_ReadXPMFromArray(font_comIO))
+		SDL_CreateTextureFromSurface(renderer, IMG_ReadXPMFromArray((char **)font_comIO))
 	)) {
 		return 1;
 	}
@@ -77,7 +77,7 @@ int main() {
 			CENTER,
 			auriTextVersion,
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 192,
+			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) - 192,
 			2.0f, 2.0f,
 			
 			0xFF, 0xFF, 0xFF, 0xFF
@@ -90,7 +90,7 @@ int main() {
 			CENTER,
 			"AuriText Example Program",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 152,
+			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) - 152,
 			2.0f, 2.0f,
 			
 			0xFF, 0xFF, 0xFF, 0xFF
@@ -103,7 +103,7 @@ int main() {
 			CENTER,
 			"Red",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 104,
+			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) - 104,
 			5.0f, 5.0f,
 			
 			0xFF, 0x00, 0x00, 0xFF
@@ -116,7 +116,7 @@ int main() {
 			CENTER,
 			"Green",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 40,
+			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) - 40,
 			5.0f, 5.0f,
 			
 			0x00, 0xFF, 0x00, 0xFF
@@ -129,7 +129,7 @@ int main() {
 			CENTER,
 			"Blue",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 24,
+			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) + 24,
 			5.0f, 5.0f,
 			
 			0x00, 0x00, 0xFF, 0xFF
@@ -142,7 +142,7 @@ int main() {
 			CENTER,
 			"Alpha - 128",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 88,
+			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) + 88,
 			5.0f, 5.0f,
 			
 			0xFF, 0xFF, 0xFF, 0x80
@@ -155,7 +155,7 @@ int main() {
 			CENTER,
 			"Alpha - 64",
 			
-			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 152,
+			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) + 152,
 			5.0f, 5.0f,
 			
 			0xFF, 0xFF, 0xFF, 0x40
