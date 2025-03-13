@@ -1,5 +1,5 @@
 /*
-	This file is part of libAuriText-SDL2.
+	This file is part of libAuriText.
 
 	libAuriText is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
@@ -18,7 +18,11 @@
 #ifndef __COMIO__
 #define __COMIO__
 
-static char *font_comIO[] = {
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+const char *font_comIO[] = {
 	"760 8 2 1 ",
 	"  c None",
 	". c white",
@@ -31,5 +35,9 @@ static char *font_comIO[] = {
 	"..  ..                  .......  ....    ..  .. .. ..             ..      ..      ..      ..      ..                     ..     ..  ..    ..    ..      ..  ..     ..   ..  ..  ..  ..    ..    ..  ..  ..  ..            ..      ..             ..             ..      ..  ..  ..  ..  ..  ..  ..  ..  ..      ..      ..  ..  ..  ..    ..    ..  ..  .. ..   ..      .. . .. ..  ..  ..  ..  ..      ..  ..  ..  ..  ..  ..    ..    ..  ..   ....   ....... ..  ..    ..    ..       ..         ..     ..                           ..  ..  ..  ..  ..  ..  ..  ..  ..       ..     ..  ..  ..  ..    ..    ..  ..  .. ..     ..    .. . .  ..  ..  ..  ..  ..       .....  ..      ..  ..    ..    ..  ..   ....   ....... ..  ..    ..    ..        ..      ..      ..            ",
 	"......    ..             .. ..    ..     ..  ..  .. ..             ..    ..                      ..               ..     ..      ....   ......  ......   ....      ..    ....    ....     ..     ....    ....     ..     ..        ..           ..        ..     ....   ..  ..  .....    ....   .....   ......  ..       ....   ..  ..    ..     ....   ..  ..  ......  ..   .. ..  ..   ....   ..       ...... ..  ..   ....     ..     ....     ..     .. ..  ..  ..    ..    ......   ....       ..   ....           ......           .....  .....    ....    .....   .....   ..      ....   ..  ..    ..     ....   ..  ..     ..   .. . .  ..  ..   ....   ..          ..  ..       ....      ...   .....    ..     .. ..  ..  ..  ...     ......     ..     ..     ..             "
 };
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

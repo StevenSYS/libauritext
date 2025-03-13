@@ -40,10 +40,10 @@ enum auriText_errors {
 
 typedef struct {
 	SDL_Texture *fontSheet;
-	unsigned char size[2];
+	unsigned short size[2];
 } font_t;
 
-char *auriText_version();
+const char *auriText_version();
 
 enum auriText_errors auriText_loadFont(
 	SDL_Renderer *renderer,
@@ -64,7 +64,7 @@ enum auriText_errors auriText_render(
 	const char *text,
 	
 	short x, short y,
-	float scaleX, float scaleY,
+	char scaleX, char scaleY,
 	
 	const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha
 );

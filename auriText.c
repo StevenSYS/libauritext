@@ -29,7 +29,7 @@
 
 #define MAX_TEXTLENGTH 65535
 
-char *auriText_version() {
+const char *auriText_version() {
 	return LIBRARY_VERSION;
 }
 
@@ -45,7 +45,7 @@ enum auriText_errors auriText_loadFont(
 ) {
 	if (!fontSheet) {
 		#if defined(ERROR_MESSAGES_STDERR) || defined(ERROR_MESSAGES_SDL)
-		char *errorMessage = "Font sheet texture is invalid";
+		const char *errorMessage = "Font sheet texture is invalid";
 		
 		#ifdef ERROR_MESSAGES_STDERR
 		fprintf(stderr, "ERROR: %s\n", errorMessage);
@@ -57,8 +57,8 @@ enum auriText_errors auriText_loadFont(
 		return AURITEXT_FONT_INVALID;
 	}
 	
-	font->size[0] = width;
-	font->size[1] = height;
+	font->size[0] = (float)width;
+	font->size[1] = (float)height;
 	
 	font->fontSheet = fontSheet;
 	SDL_SetTextureScaleMode(font->fontSheet, SDL_ScaleModeNearest);
@@ -73,7 +73,7 @@ enum auriText_errors auriText_render(
 	const char *text,
 	
 	short x, short y,
-	float scaleX, float scaleY,
+	char scaleX, char scaleY,
 	
 	const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha
 ) {
@@ -101,7 +101,7 @@ enum auriText_errors auriText_render(
 					} else {
 						letter = text[i] - 32;
 					}
-					SDL_Rect letterCrop = { (letter * font->size[0]), 0, font->size[0], font->size[1] };
+					SDL_Rect letterCrop = { letter * font->size[0], 0, font->size[0], font->size[1] };
 					SDL_Rect letterRect = { x, y, font->size[0] * scaleX, font->size[1] * scaleY };
 					SDL_SetTextureColorMod(font->fontSheet, red, green, blue);
 					SDL_SetTextureAlphaMod(font->fontSheet, alpha);

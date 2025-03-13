@@ -1,5 +1,5 @@
 /*
-	This file is part of libAuriText-SDL2.
+	This file is part of libAuriText.
 
 	libAuriText is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
@@ -32,7 +32,7 @@ int main() {
 	
 	SDL_Event event;
 	SDL_Window *window = SDL_CreateWindow(
-		"AuriText-SDL2 Example Program",
+		"AuriText Example Program",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		RENDER_WIDTH, RENDER_HEIGHT,
 		0
@@ -41,7 +41,7 @@ int main() {
 	SDL_Renderer *renderer = SDL_CreateRenderer(
 		window,
 		-1,
-		0
+		SDL_RENDERER_ACCELERATED
 	);
 	
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x40, 0x00, 0x00);
@@ -54,12 +54,12 @@ int main() {
 		
 		8, 8,
 		
-		SDL_CreateTextureFromSurface(renderer, IMG_ReadXPMFromArray(font_comIO))
+		SDL_CreateTextureFromSurface(renderer, IMG_ReadXPMFromArray((char **)font_comIO))
 	)) {
 		return 1;
 	}
 	
-	strcpy(auriTextVersion, "libAuriText-SDL2 v");
+	strcpy(auriTextVersion, "libAuriText v");
 	strcat(auriTextVersion, auriText_version());
 	
 	while (running) {
@@ -80,7 +80,7 @@ int main() {
 			auriTextVersion,
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 192,
-			2.0f, 2.0f,
+			2, 2,
 			
 			0xFF, 0xFF, 0xFF, 0xFF
 		);
@@ -90,10 +90,10 @@ int main() {
 			
 			&comIO,
 			CENTER,
-			"AuriText-SDL2 Example Program",
+			"AuriText Example Program",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 152,
-			2.0f, 2.0f,
+			2, 2,
 			
 			0xFF, 0xFF, 0xFF, 0xFF
 		);
@@ -106,7 +106,7 @@ int main() {
 			"Red",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 104,
-			5.0f, 5.0f,
+			5, 5,
 			
 			0xFF, 0x00, 0x00, 0xFF
 		);
@@ -119,7 +119,7 @@ int main() {
 			"Green",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 40,
-			5.0f, 5.0f,
+			5, 5,
 			
 			0x00, 0xFF, 0x00, 0xFF
 		);
@@ -132,7 +132,7 @@ int main() {
 			"Blue",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 24,
-			5.0f, 5.0f,
+			5, 5,
 			
 			0x00, 0x00, 0xFF, 0xFF
 		);
@@ -145,7 +145,7 @@ int main() {
 			"Alpha - 128",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 88,
-			5.0f, 5.0f,
+			5, 5,
 			
 			0xFF, 0xFF, 0xFF, 0x80
 		);
@@ -158,7 +158,7 @@ int main() {
 			"Alpha - 64",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 152,
-			5.0f, 5.0f,
+			5, 5,
 			
 			0xFF, 0xFF, 0xFF, 0x40
 		);
