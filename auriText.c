@@ -57,8 +57,8 @@ enum auriText_errors auriText_loadFont(
 		return AURITEXT_FONT_INVALID;
 	}
 	
-	font->size[0] = (float)width;
-	font->size[1] = (float)height;
+	font->size[0] = width;
+	font->size[1] = height;
 	
 	font->fontSheet = fontSheet;
 	SDL_SetTextureScaleMode(font->fontSheet, SDL_ScaleModeNearest);
