@@ -1,0 +1,106 @@
+name: Build
+on: [push, pull_request]
+env:
+  CODE_PATH: .
+  BUILD_PATH: build
+  SDL2_VERSION: 2.32.2
+defaults:
+  run:
+    shell: bash
+jobs:
+  build:
+    name: Build ${{matrix.build-targets.name}}
+    runs-on: ${{matrix.build-targets.os}}
+    strategy:
+      matrix:
+        build-targets:
+          - {
+            name: "Linux (x64 Static)",
+            os: "ubuntu-latest",
+            libPath: "lib",
+            cFlags: "",
+            shared: false,
+            compiler: "gcc",
+            output: "AuriText-SDL2-linux-x64-static"
+          } 
+          - {
+            name: "Linux (x64 Shared)",
+            os: "ubuntu-latest",
+            libPath: "lib",
+            cFlags: "",
+            shared: true,
+            compiler: "gcc",
+            output: "AuriText-SDL2-linux-x64-shared"
+          } 
+          - {
+            name: "Windows (x64)",
+            os: "windows-latest",
+            libPath: "lib",
+            cFlags: "",
+            shared: true,
+            compiler: "gcc",
+            output: "AuriText-SDL2-mingw-x64"
+          }
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: SDL2 - Install (Linux)
+        if: runner.os == 'Linux'
+        run: >
+          sudo apt install libsdl2-dev
+      
+      - name: SDL2 - Install (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          curl -L https://github.com/libsdl-org/SDL/releases/download/release-${{env.SDL2_VERSION}}/SDL2-devel-${{env.SDL2_VERSION}}-mingw.tar.gz -o SDL2-devel-${{env.SDL2_VERSION}}-mingw.tar.gz
+          tar xzvf SDL2-devel-${{env.SDL2_VERSION}}-mingw.tar.gz
+          
+          cp -r SDL2-${{env.SDL2_VERSION}}/x86_64-w64-mingw32/* C:/mingw64
+          cp -r SDL2-${{env.SDL2_VERSION}}/x86_64-w64-mingw32/* C:/mingw64/x86_64-w64-mingw32
+      
+      - name: Make Directories
+        run: >
+          mkdir -p "${{matrix.build-targets.output}}/include/AuriText-SDL2"
+          "${{matrix.build-targets.output}}/${{matrix.build-targets.libPath}}"
+          "${{matrix.build-targets.output}}/share/licenses/AuriText-SDL2"
+      
+      - name: Make Directories (Windows)
+        if: runner.os == 'Windows'
+        run: >
+          mkdir -p "${{matrix.build-targets.output}}/bin"
+      
+      - name: Configure CMake
+        run: >
+          cmake -S ${{env.CODE_PATH}}
+          -B ${{env.BUILD_PATH}}
+          -DCMAKE_C_COMPILER=${{matrix.build-targets.compiler}}
+          -DCMAKE_BUILD_TYPE=Release
+          -DBUILD_SHARED_LIBS=${{matrix.build-targets.shared}}
+          -DCMAKE_C_FLAGS=${{matrix.build-targets.cFlags}}
+          -G "Unix Makefiles"
+      
+      - name: Build
+        run: cmake --build ${{env.BUILD_PATH}}
+     
+      - name: Copy Files (Shared)
+        run: |
+          cp *.h "${{matrix.build-targets.output}}/include/AuriText-SDL2"
+          cp COPYING* "${{matrix.build-targets.output}}/share/licenses/AuriText-SDL2"
+      
+      - name: Copy Files (Linux)
+        if: runner.os == 'Linux'
+        run: cp ${{env.BUILD_PATH}}/libAuriText-SDL2.* "${{matrix.build-targets.output}}/${{matrix.build-targets.libPath}}"
+      
+      - name: Copy Files (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          cp ${{env.BUILD_PATH}}/libAuriText-SDL2.dll.a "${{matrix.build-targets.output}}/${{matrix.build-targets.libPath}}"
+          cp ${{env.BUILD_PATH}}/libAuriText-SDL2.dll "${{matrix.build-targets.output}}/bin"
+      
+      - name: Make Archive
+        run: tar -czvf "${{matrix.build-targets.output}}.tar.gz" "${{matrix.build-targets.output}}"
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{matrix.build-targets.output}}
+          path: ${{matrix.build-targets.output}}.tar.gz
