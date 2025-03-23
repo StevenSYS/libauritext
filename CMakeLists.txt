@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
+
+option(BUILD_SHARED_LIBS "Build shared version of ${PROJECT_NAME}" on)
+
 project(AuriText LANGUAGES C)
 
 set(CMAKE_C_FLAGS_DEBUG "-g -Wall")
