@@ -74,7 +74,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			auriTextVersion,
 			
 			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) - 192,
@@ -87,7 +87,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"AuriText Example Program",
 			
 			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) - 152,
@@ -100,7 +100,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Red",
 			
 			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) - 104,
@@ -113,7 +113,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Green",
 			
 			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) - 40,
@@ -126,7 +126,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Blue",
 			
 			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) + 24,
@@ -139,7 +139,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Alpha - 128",
 			
 			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) + 88,
@@ -152,7 +152,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Alpha - 64",
 			
 			(float)RENDER_WIDTH / 2, (float)(RENDER_HEIGHT / 2) + 152,

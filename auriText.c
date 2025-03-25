@@ -81,12 +81,12 @@ enum auriText_errors auriText_render(
 	
 	if (strlen(text) > 0 && strlen(text) < MAX_TEXTLENGTH) {
 		switch (align) {
-			case LEFT:
+			case AURITEXT_LEFT:
 				break;
-			case CENTER:
+			case AURITEXT_CENTER:
 				x -= (strlen(text) * (font->size[0] * scaleX)) / 2;
 				break;
-			case RIGHT:
+			case AURITEXT_RIGHT:
 				x -= strlen(text) * (font->size[0] * scaleX);
 				break;
 		}
