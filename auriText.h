@@ -26,9 +26,9 @@ struct SDL_Renderer;
 struct SDL_Texture;
 
 enum auriText_align {
-	LEFT,
-	CENTER,
-	RIGHT
+	AURITEXT_LEFT,
+	AURITEXT_CENTER,
+	AURITEXT_RIGHT
 };
 
 enum auriText_errors {

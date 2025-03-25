@@ -76,7 +76,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			auriTextVersion,
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 192,
@@ -89,7 +89,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"AuriText-SDL2 Example Program",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 152,
@@ -102,7 +102,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Red",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 104,
@@ -115,7 +115,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Green",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) - 40,
@@ -128,7 +128,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Blue",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 24,
@@ -141,7 +141,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Alpha - 128",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 88,
@@ -154,7 +154,7 @@ int main() {
 			renderer,
 			
 			&comIO,
-			CENTER,
+			AURITEXT_CENTER,
 			"Alpha - 64",
 			
 			RENDER_WIDTH / 2, (RENDER_HEIGHT / 2) + 152,
