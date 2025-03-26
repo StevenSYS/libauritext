@@ -51,7 +51,7 @@ enum auriText_errors auriText_loadFont(
 		fprintf(stderr, "ERROR: %s\n", errorMessage);
 		#endif
 		#ifdef ERROR_MESSAGES_SDL
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: libAuriText - Invalid Font Sheet Texture", errorMessage, NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR: AuriText - Invalid Font Sheet Texture", errorMessage, NULL);
 		#endif
 		#endif
 		return AURITEXT_FONT_INVALID;
