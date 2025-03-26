@@ -57,7 +57,7 @@ int main() {
 		return 1;
 	}
 	
-	strcpy(auriTextVersion, "libAuriText v");
+	strcpy(auriTextVersion, "AuriText v");
 	strcat(auriTextVersion, auriText_version());
 	
 	while (running) {
