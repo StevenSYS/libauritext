@@ -1,17 +1,17 @@
 /*
-	This file is part of libAuriText.
+	This file is part of AuriText-SDL2.
 
-	libAuriText is free software: you can redistribute it and/or modify
+	AuriText is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	any later version.
 
-	libAuriText is distributed in the hope that it will be useful,
+	AuriText-SDL2 is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU Lesser General Public License for more details.
 
-	You should have received a copy of the GNU Lesser General Public License along with libAuriText.
+	You should have received a copy of the GNU Lesser General Public License along with AuriText-SDL2.
 	If not, see <https://www.gnu.org/licenses/>.
 */
 
@@ -59,7 +59,7 @@ int main() {
 		return 1;
 	}
 	
-	strcpy(auriTextVersion, "libAuriText-SDL2 v");
+	strcpy(auriTextVersion, "AuriText-SDL2 v");
 	strcat(auriTextVersion, auriText_version());
 	
 	while (running) {
