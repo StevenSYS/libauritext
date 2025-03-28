@@ -42,6 +42,7 @@ int main() {
 		"opengl"
 	);
 	
+	SDL_SetRenderVSync(renderer, 1);
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x40, 0x00, 0x00);
 	
 	font_t comIO;
