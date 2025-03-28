@@ -32,6 +32,10 @@ fi
 for i in */; do
 	if [[ "${i%/}" != "$tempDir" ]]; then
 		./makeFontSheet.sh "${i%/}" "$tempDir/${i%/}.png"
+		if [ "$CRUSH" = true ]; then
+			pngcrush "$tempDir/${i%/}.png" "$tempDir/crushed-${i%/}.png"
+			mv "$tempDir/crushed-${i%/}.png" "$tempDir/${i%/}.png"
+		fi
 	fi
 done
 

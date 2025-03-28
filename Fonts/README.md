@@ -1,1 +1,1 @@
-The fonts here are all public-domain, feel free to do whatever you want with them.
+The fonts here are all public-domain, feel free to do whatever you want with them

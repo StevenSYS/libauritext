@@ -22,7 +22,9 @@
 extern "C" {
 #endif
 
-const char *font_comIO[] = {
+const char comIO_size[2] = { 8, 8 };
+
+const char *comIO_fontSheet[] = {
 	"760 8 2 1 ",
 	"  c None",
 	". c white",
