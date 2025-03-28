@@ -22,7 +22,8 @@
 extern "C" {
 #endif
 
-const char comIO_size[2] = { 8, 8 };
+#define COMIO_WIDTH 8
+#define COMIO_HEIGHT 8
 
 const char *comIO_fontSheet[] = {
 	"760 8 2 1 ",
