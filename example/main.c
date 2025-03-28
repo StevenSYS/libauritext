@@ -44,6 +44,7 @@ int main() {
 		SDL_RENDERER_ACCELERATED
 	);
 	
+	SDL_RenderSetVSync(renderer, 1);
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x40, 0x00, 0x00);
 	
 	font_t comIO;
