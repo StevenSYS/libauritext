@@ -52,9 +52,9 @@ int main() {
 		
 		&comIO,
 		
-		8, 8,
+		comIO_size[0], comIO_size[1],
 		
-		SDL_CreateTextureFromSurface(renderer, IMG_ReadXPMFromArray((char **)font_comIO))
+		SDL_CreateTextureFromSurface(renderer, IMG_ReadXPMFromArray((char **)comIO_fontSheet))
 	)) {
 		return 1;
 	}
