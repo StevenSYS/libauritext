@@ -43,7 +43,7 @@ enum auriText_errors auriText_loadFont(
 	
 	SDL_Texture *fontSheet
 ) {
-	if (!fontSheet) {
+	if (fontSheet == NULL) {
 		#if defined(ERROR_MESSAGES_STDERR) || defined(ERROR_MESSAGES_SDL)
 		const char *errorMessage = "Font sheet texture is invalid";
 		
@@ -77,43 +77,42 @@ enum auriText_errors auriText_render(
 	
 	const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha
 ) {
-	unsigned char letter = 0;
+	unsigned char character = 0;
 	
-	if (strlen(text) > 0 && strlen(text) < MAX_TEXTLENGTH) {
+	if (strlen(text) && strlen(text) < MAX_TEXTLENGTH) {
 		switch (align) {
-			case AURITEXT_LEFT:
-				break;
 			case AURITEXT_CENTER:
 				x -= (strlen(text) * (font->size[0] * scaleX)) / 2;
 				break;
 			case AURITEXT_RIGHT:
 				x -= strlen(text) * (font->size[0] * scaleX);
 				break;
+			default: /* This is here so the compiler won't give a warning */
+				break;
 		}
+		
 		for (unsigned short i = 0; i < strlen(text); i++) {
-			switch (text[i]) {
-				case 32: /* Space */
-					x += font->size[0] * scaleX;
-					break;
-				default:
-					if (text[i] < 33 || text[i] > 126) {
-						letter = 0;
-					} else {
-						letter = text[i] - 32;
-					}
-					SDL_FRect letterCrop = { letter * font->size[0], 0, font->size[0], font->size[1] };
-					SDL_FRect letterRect = { x, y, font->size[0] * scaleX, font->size[1] * scaleY };
-					SDL_SetTextureColorMod(font->fontSheet, red, green, blue);
-					SDL_SetTextureAlphaMod(font->fontSheet, alpha);
-					SDL_RenderTexture(renderer, font->fontSheet, &letterCrop, &letterRect);
-					x += font->size[0] * scaleX;
-					break;
+			if (text[i] != ' ') {
+				if (text[i] < 33 || text[i] > 126) {
+					character = 0;
+				} else {
+					character = text[i] - 32;
+				}
+				
+				SDL_FRect cropRect = { character * font->size[0], 0, font->size[0], font->size[1] };
+				SDL_FRect sizeRect = { x, y, font->size[0] * scaleX, font->size[1] * scaleY };
+				SDL_SetTextureColorMod(font->fontSheet, red, green, blue);
+				SDL_SetTextureAlphaMod(font->fontSheet, alpha);
+				SDL_RenderTexture(renderer, font->fontSheet, &cropRect, &sizeRect);
 			}
+			
+			x += font->size[0] * scaleX;
 		}
-	} else if (strlen(text) <= 0) {
+	} else if (!strlen(text)) {
 		return AURITEXT_STRING_EMPTY;
 	} else if (strlen(text) > MAX_TEXTLENGTH) {
 		return AURITEXT_STRING_TOOLONG;
 	}
+	
 	return AURITEXT_NOERROR;
 }
