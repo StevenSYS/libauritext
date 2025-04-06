@@ -1,17 +1,17 @@
 /*
-	This file is part of libAuriText.
+	This file is part of AuriText-SDL2.
 
-	libAuriText is free software: you can redistribute it and/or modify
+	AuriText-SDL2 is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	any later version.
 
-	libAuriText is distributed in the hope that it will be useful,
+	AuriText-SDL2 is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU Lesser General Public License for more details.
 
-	You should have received a copy of the GNU Lesser General Public License along with libAuriText.
+	You should have received a copy of the GNU Lesser General Public License along with AuriText.
 	If not, see <https://www.gnu.org/licenses/>.
 */
 
@@ -26,24 +26,24 @@ struct SDL_Renderer;
 struct SDL_Texture;
 
 enum auriText_align {
-	LEFT,
-	CENTER,
-	RIGHT
+	AURITEXT_LEFT,
+	AURITEXT_CENTER,
+	AURITEXT_RIGHT
 };
 
 enum auriText_errors {
 	AURITEXT_NOERROR,
-	AURITEXT_FONT_MISSING,
+	AURITEXT_FONT_INVALID,
 	AURITEXT_STRING_EMPTY,
 	AURITEXT_STRING_TOOLONG
 };
 
 typedef struct {
 	SDL_Texture *fontSheet;
-	unsigned char size[2];
+	unsigned short size[2];
 } font_t;
 
-char *auriText_version();
+const char *auriText_version();
 
 enum auriText_errors auriText_loadFont(
 	SDL_Renderer *renderer,
@@ -53,7 +53,7 @@ enum auriText_errors auriText_loadFont(
 	const unsigned char width,
 	const unsigned char height,
 	
-	const char *fontSheet
+	SDL_Texture *fontSheet
 );
 
 enum auriText_errors auriText_render(
@@ -64,9 +64,9 @@ enum auriText_errors auriText_render(
 	const char *text,
 	
 	short x, short y,
-	float scaleX, float scaleY,
+	char scaleX, char scaleY,
 	
-	const unsigned char red, const unsigned char green, const unsigned char blue
+	const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha
 );
 
 #ifdef __cplusplus

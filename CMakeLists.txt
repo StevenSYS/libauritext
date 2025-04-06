@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.25)
-set(LIBRARY_NAME "AuriText")
 
-project(AuriText LANGUAGES C)
+option(BUILD_SHARED_LIBS "Build shared version of ${PROJECT_NAME}" on)
+
+project(AuriText-SDL2 LANGUAGES C)
 
 set(CMAKE_C_FLAGS_DEBUG "-g -Wall")
 set(CMAKE_C_FLAGS_RELEASE "-s -O2")
@@ -9,7 +10,6 @@ set(CMAKE_C_FLAGS_RELEASE "-s -O2")
 file(GLOB SOURCE_FILES "*.c")
 
 find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 if(BUILD_SHARED_LIBS)
@@ -17,10 +17,5 @@ if(BUILD_SHARED_LIBS)
 else()
 	add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 endif()
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
 target_include_directories(${PROJECT_NAME} PRIVATE src/)
-if (CMAKE_C_COMPILER_ID MATCHES "Clang")
-	target_link_libraries(${PROJECT_NAME}
-		${SDL2_LIBRARIES}
-		SDL2_image
-	)
-endif()
