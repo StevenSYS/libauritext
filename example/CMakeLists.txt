@@ -15,6 +15,7 @@ include_directories(
 )
 
 add_library(AuriText STATIC ../auriText.c)
+target_link_libraries(AuriText SDL3)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME}
